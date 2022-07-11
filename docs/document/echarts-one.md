@@ -2,7 +2,7 @@
 
 ## 入门
 ###### 通过 npm 获取 echarts
-```
+```md:no-line-numbers
 npm install echarts --save
 ```
 

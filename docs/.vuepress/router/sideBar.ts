@@ -39,7 +39,7 @@ module.exports = {
     {
       text: 'Flex',
       collapsible: true,
-      children: ['flex-one.md', 'flex-two.md']
+      children: ['flex-one.md', 'flex-two.md', 'flex-three.md']
     },
     {
       text: 'Echars',
@@ -52,9 +52,29 @@ module.exports = {
       children: ['moment-one.md']
     },
     {
+      text: 'Awe-dnd',
+      collapsible: true,
+      children: ['awe-dnd.md']
+    },
+    {
+      text: 'qrcode',
+      collapsible: true,
+      children: ['qrcode.md']
+    },
+    {
+      text: 'wangeditor',
+      collapsible: true,
+      children: ['wangeditor.md']
+    },
+    {
+      text: 'element-ui',
+      collapsible: true,
+      children: ['element-ui.md']
+    },
+    {
       text: '实战',
       collapsible: true,
-      children: ['component.md']
+      children: ['actual-combat.md']
     }
   ],
   '/group/': [
