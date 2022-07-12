@@ -69,7 +69,7 @@ module.exports = {
     {
       text: 'element-ui',
       collapsible: true,
-      children: ['element-ui.md']
+      children: ['element-ui-one.md', 'element-ui-two.md']
     },
     {
       text: '实战',
