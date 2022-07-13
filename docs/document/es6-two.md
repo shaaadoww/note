@@ -92,7 +92,7 @@ arr.forEach(item => {
 ```js
 // bad
 let arr = [1, 3, 5, 7],
-  newArr = []
+    newArr = []
 for (let i = 0; i < arr.length; i ++) {
   if (arr[i] > 4) {
     newArr.push(arr[i])

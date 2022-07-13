@@ -3,15 +3,15 @@
 ## reduce()
 ```js
 arr.reduce(function(prev,cur,index,arr){
-    ...
+  ...
 }, init);
 
 其中：
-    arr 表示原数组；
-    prev 表示上一次调用回调时的返回值，或者初始值 init;
-    cur 表示当前正在处理的数组元素；
-    index 表示当前正在处理的数组元素的索引，若提供 init 值，则索引为0，否则索引为1；
-    init 表示初始值。
+  arr 表示原数组；
+  prev 表示上一次调用回调时的返回值，或者初始值 init;
+  cur 表示当前正在处理的数组元素；
+  index 表示当前正在处理的数组元素的索引，若提供 init 值，则索引为0，否则索引为1；
+  init 表示初始值。
 
 常用的参数有prev和cur
 ```
@@ -22,7 +22,7 @@ let totalMoney = [...].reduce((total, item) => total + (Number(item.money) || 0)
 
 ### 求和，最小值和最大值
 ```js
-const array  = [5, 4, 7, 8, 9, 2];
+const array = [5, 4, 7, 8, 9, 2];
 
 // 求和
 array.reduce((a,b) => a + b);

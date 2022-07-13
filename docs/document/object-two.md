@@ -42,8 +42,6 @@ profile // { first: 'Michael', last: 'Jackson', occupation: 'developer' }
 ```js
 JSON.parse(JSON.stringify(obj)
 ```
-
-
 ## 判断是否是对象
 ```js
 Object.prototype.toString.call(obj) == '[object Object]'

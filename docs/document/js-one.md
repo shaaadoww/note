@@ -255,8 +255,8 @@ list.sort(() => {
 
 ## 生成随机颜色
 ```js
-const generateRandomHexColor = () =>
-  \`#${Math.floor(Math.random() \* 0xffffff) .toString(16)}\`
+const generateRandomHexColor =
+  () => \`#${Math.floor(Math.random() \* 0xffffff) .toString(16)}\`
  ```
 
 ## 获取月份最后一天

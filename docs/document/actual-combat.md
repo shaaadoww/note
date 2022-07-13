@@ -3,14 +3,14 @@
 
 ### 方法1
 ```js
-var phone="13812345678";
-var str=phone.substring(0,3)+"****"+phone.substring(7);
+var phone = "13812345678";
+var str=phone.substring(0,3) + "****" + phone.substring(7);
 ```
 
 ### 方法2
 ```js
-var phone="13812345678";
-var str=phone.substr(0,3)+"****"+phone.substring(7);
+var phone = "13812345678";
+var str=phone.substr(0,3) + "****" + phone.substring(7);
 ```
 > 区别是：
 substring第一个参数是开始下标，第二个是结束下标
@@ -18,9 +18,9 @@ substr第一个参数是开始下标，第二个是截取几位
 
 ### 方法3
 ```js
-var phone="13812345678"
-var pho=/(\d{3})\d*(\d{4})/
-var str=phone.replace(pho,'$1****$2');
+var phone = "13812345678"
+var pho = /(\d{3})\d*(\d{4})/
+var str = phone.replace(pho,'$1****$2');
 console.log(str)
 ```
 
@@ -41,29 +41,31 @@ export default phoneDesensitization
 - 在不影响提交参数的同时进行页面上的脱敏处理
 ```vue
 <template>
-    <!-- 脱敏了的手机号输入框 -->
-    <el-input v-show="formInline.phoneDesensitization" v-model.trim="formInline.phoneDesensitization" @input="changePhone"></el-input>
-    <!-- 正常手机号输入框 -->
-    <el-input v-show="!formInline.phoneDesensitization" v-model.trim="formInline.phone"></el-input>
+  <!-- 脱敏了的手机号输入框 -->
+  <el-input v-show="formInline.phoneDesensitization" v-model.trim="formInline.phoneDesensitization" @input="changePhone"></el-input>
+  <!-- 正常手机号输入框 -->
+  <el-input v-show="!formInline.phoneDesensitization" v-model.trim="formInline.phone"></el-input>
 </template>
 
-data () {
-  return {
-    formInline: {
-      phoneDesensitization: '', // 从详情接口取值 phoneDesensitization(...)
-      phone: ''
-    }
-  }
-}
-methods: {
-    changePhone (pho) {
-      // 如果有编辑，脱敏的电话输入框就不再显示并清空未脱敏的输入框
-      if (pho !== this.formInline.phone) {
-        this.formInline.phoneDesensitization = ''
-        this.formInline.phone = ''
+<script>
+  data () {
+    return {
+      formInline: {
+        phoneDesensitization: '', // 从详情接口取值 phoneDesensitization(...)
+        phone: ''
       }
     }
-}
+  }
+  methods: {
+      changePhone (pho) {
+        // 如果有编辑，脱敏的电话输入框就不再显示并清空未脱敏的输入框
+        if (pho !== this.formInline.phone) {
+          this.formInline.phoneDesensitization = ''
+          this.formInline.phone = ''
+        }
+      }
+  }
+</script>
 ```
 
 ## 复制功能

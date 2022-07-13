@@ -129,7 +129,6 @@ Object.getOwnPropertyNames(obj).forEach(function (key ){
 });
 ```
 
-
 ### Reflect.ownKeys(obj)
 - 返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举. \
 ```js

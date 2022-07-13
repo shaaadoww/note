@@ -12,9 +12,9 @@
     <el-table-column
       v-for="(item, index) in TableTitles"
       :key="index" align="center"
-      show-overflow-tooltip
       :prop="item.prop"
       :label="item.label"
+      show-overflow-tooltip
     ></el-table-column>
   </el-table>
   <YPagination

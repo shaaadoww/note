@@ -34,6 +34,7 @@ let jsonText = JSON.stringify(json1);
 ```
 - JSON.stringify()第二个参数 --- 过滤器
 > 如果第二个参数是一个数组，那么JSON.stringify()返回的结果只会包含该数组中列出的对象属性。比如下面的例子：
+
 ```js
 let json1 = {
   title: "Json.stringify",

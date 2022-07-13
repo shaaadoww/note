@@ -13,7 +13,8 @@
 getChart () {
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('bar'))
-  myChart.resize({ height: 300 }) // 重新计算高度
+  // 重新计算高度
+  myChart.resize({ height: 300 })
   // 指定图表的配置项和数据
   const dataset = {
     dimensions: ['product', '工单总数', '待审批', '审批中', '已完结', '已评分', '已延期'],

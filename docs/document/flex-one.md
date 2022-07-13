@@ -165,6 +165,7 @@ stretch（默认值）：轴线占满整个交叉轴。
 .item {
   flex-basis: <length> | auto; /* default auto */
 }
+
 它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。
 ```
 

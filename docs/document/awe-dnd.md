@@ -10,7 +10,7 @@ import VueDND from 'awe-dnd'
 Vue.use(VueDND)
 
 API Vue指令的方式调用
- v-dragging="{ item: color, list: colors, group: 'color' }"
+    v-dragging="{ item: color, list: colors, group: 'color' }"
 ```
 
 > 这个库的特点是封装了 v-dragging 全局指令，然后通过全局指令去数据绑定等。

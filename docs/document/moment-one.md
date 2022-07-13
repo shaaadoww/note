@@ -44,6 +44,6 @@ this.startEndTime = [
 ];
 ```
 ### 近三个月 足3个月
-```js
+```js:no-line-numbers
 moment(new Date()).subtract(3, 'months').format('YYYY-MM-DD')
 ```
