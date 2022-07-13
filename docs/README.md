@@ -165,3 +165,16 @@ const bar = 'bar'
 ```
 :::
 ::::
+
+:::: code-group
+::: code-group-item Vue2
+```vue
+Vue2
+```
+:::
+::: code-group-item Vue3
+```vue
+Vue3
+```
+:::
+::::
