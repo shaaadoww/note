@@ -40,6 +40,13 @@ export default defineUserConfig({
       },
     },
 
+    editLink: true,
+    editLinkText: '编辑此页',
+    lastUpdated: true,
+    lastUpdatedText: '更新时间',
+    contributors: false,
+    contributorsText: '贡献者',
+
     navbar: require('./router/nav'),
     sidebar: require('./router/sideBar')
   }),

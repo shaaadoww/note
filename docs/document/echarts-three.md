@@ -34,7 +34,7 @@ beforeDestroy () {
     window.removeEventListener('resize', this.storeFun)
 },
 
-methods () {
+methods: {
     updateEcharts () {
         this.$refs.stateOverviewChart.chart.resize() // echats的图表刷新方法
     },

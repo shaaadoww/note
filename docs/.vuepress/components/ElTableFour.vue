@@ -66,7 +66,7 @@ interface List {
 
 export default defineComponent({
   setup () {
-    const treeRef = ref(null)
+    const treeRef = ref<any>(null)
     const treeData: List[] = Mock.mock({
       "list": [{
         'name': '全部',

@@ -276,7 +276,7 @@ el-tabel外层设置一个 min-width: 0;
 </template>
 
 <script>
-methods () {
+methods: {
   openDetail (row, column, cell, event) {
     if ((![21, 23, 27, 28, 29].includes(row.order) && row.currentValue !== '-' && column.label.slice(0, 3) === '当期值') || (![21, 23, 27, 28, 29].includes(row.order) && row.lastValue !== '-' && column.label.slice(0, 3) === '上期值')) {
       this.dialogVisible = true
@@ -297,7 +297,7 @@ methods () {
 </template>
 
 <script>
-methods () {
+methods: {
   specialStyle ({row, columnIndex}) {
     if ((![21, 23, 27, 28, 29].includes(row.order) && row.currentValue !== '-' && columnIndex === 2) || (![21, 23, 27, 28, 29].includes(row.order) && row.lastValue !== '-' && columnIndex === 3)) {
       return 'color: #169bd5;text-decoration: underline;cursor: pointer'
@@ -409,5 +409,132 @@ selectAll() {
 }
 ```
 
+## el-form
+### 有多个表单需要验证时
+```vue
+<script>
+  methods: {
+    async toApproval () {
+      const p1 = await this.checkData(this.$refs.xxx, 'xxx')
+      const p2 = await this.checkData(this.$refs.xxx, 'xxx')
+      Promise.all([p1, p2]).then(async () => {
+          ...
+      })
+    }
 
-image.png
+    checkData (form, content) {
+      return new Promise(resolve => {
+        form.validate(valid => {
+          if (valid) {
+            resolve()
+          } else {
+            this.$message.error(`请检查${content}各项值的有效性`)
+          }
+        })
+      })
+    }
+  }
+</script>
+```
+
+### 自定义el-form-item的label
+```vue
+<template>
+  <el-form-item>
+    <span slot="label">体$nbsp;$nbsp;$nbsp;重</span>
+    <el-input v-model="formTwo.weight" placeHolder="单位千克" name="weight"></el-input>
+  </el-form-item>
+</template>
+```
+
+### clearValidate()移除表单校验
+```js
+// 根据判断条件, 移除所有表单项的校验
+this.$refs['form'].clearValidate();
+
+// 但是有时候只需要移除其中的某一项校验, 如只移除姓名的校验:
+this.$refs['form'].clearValidate(['name']);
+
+// 把要单独移除校验的表单项的prop放到数组里面, 调用clearValidate()方法时传入prop数组参数
+// 不传任何参数时, 默认会移除整个表单校验
+```
+
+### 循环使用多个form
+> 注意重点是后面加了数组取第1位的写法，因为此时直接用form的ref名字去寻找它的时候会发现返回了一个数组，用this.$refs[form]的写法就会出现找不到对象的情况
+```js:no-line-numbers
+this.$refs[form][0].validate()
+```
+
+### v-model绑定数据可以是computed管理的
+```vue
+<template>
+  <el-form-item label="工单ID" :prop="args.workOrderId">
+    <el-input placeholder="请输入工单ID(以1开头)" v-model="FilterQuery_workOrderId"></el-input>
+  </el-form-item>
+</template>
+
+<script>
+  computed: {
+    FilterQuery_workOrderId: {
+      get () {
+        return this.FilterQuery[args.workOrderId]
+      },
+      set (val) {
+        // 输入框有变化时触发set，将值与this.FilterQuery关联起来
+        if ((/^(1[0-9]*)$/g).test(val) && (val.length < 20)) {
+          this.FilterQuery[args.workOrderId] = val
+        } else if (val.length > 20) {
+          this.FilterQuery[args.workOrderId] = val.substr(0, this.FilterQuery[args.workOrderId].length - 1)
+        } else {
+          console.log('3')
+          val[0] === '1' ? (this.FilterQuery[args.workOrderId] = val.replace(/[^0-9]/g, '').replace(/0/, '')) : (this.FilterQuery[args.workOrderId] = val.replace(/[2-9]/g, ''))
+        }
+      }
+    }
+  }
+</script>
+```
+
+### 通过v-if渲染的校验规则不生效的问题
+> 原因：因为el-form-item绑定验证事件是在mounted中进行的，规则变化后没有进行重新绑定验证事件，v-if渲染组件节点diff后被复用了，所以验证也就自然失效了
+
+###### 解决方案：
+- 给每一个el-form-item添加一个key属性区分
+```vue
+<template>
+  <el-form ref="form" :model="form" :rules="rules" label-width="124px">
+    <template v-if="show1">
+      <el-form-item label="标题1" prop="requestType">
+        <el-input size="mini" v-model="form.requestType" />
+      </el-form-item>
+    </template>
+    <template v-if="show2">
+      <el-form-item key="1" label="标题2" prop="requestData">
+        <el-input size="mini" v-model="form.requestData" />
+      </el-form-item>
+    </template>
+  </el-form>
+</template>
+```
+
+
+- 如果v-if渲染的目标是整个表单，则在form标签写入key,直接在el-form-item中写rules
+```vue
+<template>
+  <el-form ref="form" :model="form" :rules="rules" label-width="124px">
+    <template v-if="show1">
+      <el-form-item label="标题1" prop="requestType">
+        <el-input size="mini" v-model="form.requestType" />
+      </el-form-item>
+    </template>
+    <template v-if="show2">
+      <el-form-item label="标题2" prop="requestData" :rules="{ required: true, message: 'xxx不能为空', trigger: 'blur' }">
+        <el-input size="mini" v-model="form.requestData" />
+      </el-form-item>
+    </template>
+  </el-form>
+</template>
+```
+```js:n0-line-numbers
+:rules="{ required: true, message: ‘xxx不能为空’, trigger: ‘blur’ }"
+```

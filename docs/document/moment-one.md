@@ -1,19 +1,18 @@
 # 常用操作
-
 ## 拿到当前时间并格式化
-```js
+```js:no-line-numbers
 moment().format('YYYY-MM-DD HH:mm:ss')
 ```
 ### 加一个月
-```js
+```js:no-line-numbers
 subtract(-1, 'months')
 ```
 ### 减一个月
-```js
+```js:no-line-numbers
 subtract(1, 'months')
 ```
 ### 减一年
-```js
+```js:no-line-numbers
 subtract(1, 'years')
 ```
 ```js

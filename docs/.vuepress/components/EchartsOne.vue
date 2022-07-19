@@ -1,5 +1,6 @@
 <template>
   <div id="bar" style="padding-top: 20px; width: 100%;"></div>
+  <input v-focus />
 </template>
 
 <script>
@@ -8,6 +9,15 @@ import echarts from 'echarts'
 export default {
   data () {
     return {
+    }
+  },
+  directives: {
+    focus: {
+      // 指令的定义
+      inserted: function (el) {
+        console.log(el, 'el')
+        el.focus() // 页面加载完成之后自动让输入框获取到焦点的小功能
+      }
     }
   },
 

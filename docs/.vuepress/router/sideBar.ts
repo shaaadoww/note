@@ -72,9 +72,14 @@ module.exports = {
       children: ['element-ui-one.md', 'element-ui-two.md']
     },
     {
+      text: '正则',
+      collapsible: true,
+      children: ['reg-ex-one.md', 'reg-ex-two.md']
+    },
+    {
       text: '实战',
       collapsible: true,
-      children: ['actual-combat.md']
+      children: ['actual-combat-one.md', 'actual-combat-two.md']
     }
   ],
   '/group/': [
